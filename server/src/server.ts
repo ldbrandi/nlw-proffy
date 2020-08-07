@@ -1,8 +1,12 @@
-import express from 'express'
+import express from 'express';
+import cors from 'cors';
+import routes from './routes';
 
-const app = express()
+const app = express();
 
-app.use(express.json())
+app.use(express.json());
+app.use(cors());
+app.use(routes);
 
 // Get: Buscar ou listar uma informação
 // Post: Criar alguma nova informação
@@ -16,9 +20,5 @@ app.use(express.json())
 // Query Params: Páginação, filtros, ordenação (request.query)
 //      não é necessário nenhum ajuste na rota do lado do servidor
 //      na chamada da api, adicionar ?param=value no final da URL para adicionar este parâmetros
-
-app.get('/', (request, response) => {
-    return response.json({message: 'Hello world'})
-})
 
 app.listen(3333);
